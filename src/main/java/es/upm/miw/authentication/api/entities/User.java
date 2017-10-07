@@ -1,4 +1,4 @@
-package entities;
+package es.upm.miw.authentication.api.entities;
 
 import java.util.Calendar;
 

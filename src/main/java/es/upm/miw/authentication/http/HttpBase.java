@@ -1,4 +1,4 @@
-package http;
+package es.upm.miw.authentication.http;
 
 import java.util.HashMap;
 import java.util.Map;

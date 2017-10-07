@@ -1,4 +1,6 @@
-package http;
+package es.upm.miw.authentication.http;
+
+import es.upm.miw.authentication.api.Dispatcher;
 
 public class Server {
     private Dispatcher dispatcher = new Dispatcher();

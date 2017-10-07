@@ -1,4 +1,4 @@
-package http;
+package es.upm.miw.authentication.http;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

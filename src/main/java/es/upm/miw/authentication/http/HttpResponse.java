@@ -1,4 +1,4 @@
-package http;
+package es.upm.miw.authentication.http;
 
 public class HttpResponse extends HttpBase {
 
