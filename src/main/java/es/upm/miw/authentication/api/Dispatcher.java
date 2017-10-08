@@ -17,7 +17,15 @@ public class Dispatcher {
     }
 
     public void doPost(HttpRequest request, HttpResponse response) {
-        response.setStatus(HttpStatus.CREATED);
+        try {
+            if (request.isEqualsPath("users")) {
+                response.setStatus(HttpStatus.CREATED);
+            } else {
+                throw new RequestInvalidException(request.getPath());
+            }
+        } catch (Exception e) {
+            responseError(response, e);
+        }
     }
 
     public void doPut(HttpRequest request, HttpResponse response) {
