@@ -1,4 +1,4 @@
-package es.upm.miw.dtos;
+package es.upm.miw.authentication.dtos;
 
 import static org.junit.Assert.*;
 
@@ -11,10 +11,10 @@ import es.upm.miw.authentication.api.entities.Authentication;
 import es.upm.miw.authentication.api.entities.Rol;
 import es.upm.miw.authentication.api.entities.User;
 
-public class AuthenticationDtoTest {
-    
+public class UserDtoTest {
+
     @Test
-    public void testNewAuthentication() {
+    public void testNewUserDto() {
         Calendar date = Calendar.getInstance();
         date.set(1991,11,16);
         User user = new User(1,"Joaquin",date,true);
