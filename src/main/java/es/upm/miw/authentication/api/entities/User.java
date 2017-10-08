@@ -19,6 +19,10 @@ public class User {
         this.birthday = birthday;
         this.active = active;
     }
+    
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public int getId() {
         return id;

@@ -13,6 +13,14 @@ public class Authentication {
         this.user = user;
         this.rol = rol;
     }
+    
+    public void setId(int id) {
+        this.id = id;
+    }
+    
+    public void setRol(Rol rol) {
+        this.rol = rol;
+    }
 
     public int getId() {
         return id;
