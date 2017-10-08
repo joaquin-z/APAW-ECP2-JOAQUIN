@@ -13,6 +13,11 @@ public class User {
 
     private boolean active;
     
+    public User(String name, Calendar birthday) {
+        this.name = name;
+        this.birthday = birthday;
+    }
+    
     public User(int id, String name, Calendar birthday, boolean active) {
         this.id = id;
         this.name = name;

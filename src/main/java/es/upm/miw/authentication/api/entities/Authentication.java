@@ -8,6 +8,11 @@ public class Authentication {
     
     private Rol rol;
     
+    public Authentication(User user, Rol rol) {
+        this.user = user;
+        this.rol = rol;
+    }
+    
     public Authentication(int id, User user, Rol rol) {
         this.id = id;
         this.user = user;
