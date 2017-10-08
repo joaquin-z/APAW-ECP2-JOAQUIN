@@ -19,8 +19,10 @@ public class UserController {
         return themeDtoList;
     }
     
-    public void createUser(int id, String name, Calendar birthday, boolean active) {
-        DaoFactory.getFactory().getUserDao().create(new User(id, name, birthday, active));
+    public void createUser(String name, String date) {
+        Calendar birthday = Calendar.getInstance();
+        birthday.set(1991,11,16);
+        DaoFactory.getFactory().getUserDao().create(new User(name, birthday));
     }
 
 }

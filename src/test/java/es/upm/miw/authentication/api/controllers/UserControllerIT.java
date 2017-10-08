@@ -21,14 +21,14 @@ public class UserControllerIT {
         userController = new UserController();
         Calendar date = Calendar.getInstance();
         String fecha = new SimpleDateFormat("yyyy-MM-dd").format(date.getTime());
-        userController.createUser(1,"Joaquin",fecha,true);
+        userController.createUser("Joaquin",fecha);
     }
 
     @Test
     public void testCreateAndUserList() {
         Calendar date = Calendar.getInstance();
         String fecha = new SimpleDateFormat("yyyy-MM-dd").format(date.getTime());
-        userController.createUser(1,"Joaquin",fecha,true);
+        userController.createUser("Joaquin",fecha);
         assertEquals(2, userController.userList().size());
         assertEquals("Joaquin", userController.userList().get(0).getName());
     }

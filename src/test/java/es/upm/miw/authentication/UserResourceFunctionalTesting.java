@@ -9,6 +9,8 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import es.upm.miw.authentication.http.HttpException;
+import es.upm.miw.authentication.api.daos.DaoFactory;
+import es.upm.miw.authentication.api.daos.memory.DaoMemoryFactory;
 import es.upm.miw.authentication.api.resources.UserResource;
 import es.upm.miw.authentication.http.HttpClientService;
 import es.upm.miw.authentication.http.HttpMethod;
@@ -26,6 +28,7 @@ public class UserResourceFunctionalTesting {
 
     @Before
     public void before() {
+        DaoFactory.setFactory(new DaoMemoryFactory());
         new HttpRequest();
         date = Calendar.getInstance();
         fecha = new SimpleDateFormat("yyyy-MM-dd").format(date.getTime());

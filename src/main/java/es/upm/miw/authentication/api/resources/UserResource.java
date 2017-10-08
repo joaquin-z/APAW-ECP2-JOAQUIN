@@ -1,5 +1,6 @@
 package es.upm.miw.authentication.api.resources;
 
+import es.upm.miw.authentication.api.controllers.UserController;
 import es.upm.miw.authentication.api.resources.exceptions.DateEmptyException;
 import es.upm.miw.authentication.api.resources.exceptions.NameEmptyException;
 
@@ -14,6 +15,7 @@ public class UserResource {
         if (date.isEmpty()) {
             throw new DateEmptyException(date);
         }
+        new UserController().createUser(name, date);
     }
 
 }
