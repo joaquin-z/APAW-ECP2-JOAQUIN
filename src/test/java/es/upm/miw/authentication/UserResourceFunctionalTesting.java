@@ -1,5 +1,7 @@
 package es.upm.miw.authentication;
 
+import static org.junit.Assert.assertEquals;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -33,10 +35,38 @@ public class UserResourceFunctionalTesting {
         date = Calendar.getInstance();
         fecha = new SimpleDateFormat("yyyy-MM-dd").format(date.getTime());
     }
+    
+    public void createUser() {
+        HttpRequest request = new HttpRequestBuilder().method(HttpMethod.POST).path(UserResource.USERS).body("Joaquin:"+fecha).build();
+        new HttpClientService().httpRequest(request);
+    }
 
     @Test
     public void testCreateUser() {
         HttpRequest request = new HttpRequestBuilder().method(HttpMethod.POST).path(UserResource.USERS).body("Joaquin:"+fecha).build();
+        new HttpClientService().httpRequest(request);
+    }
+    
+    @Test
+    public void testReadUser() {
+        this.createUser();
+        HttpRequest request = new HttpRequestBuilder().method(HttpMethod.GET).path(UserResource.USERS).path("/{id}").expandPath("1").build();
+        assertEquals("{\"id\":1,\"name\":Joaquin,\"birthday\":1991-12-16,\"active\":false}", new HttpClientService().httpRequest(request).getBody());
+    }
+    
+    @Test
+    public void testReadUserIdNotFoundExeption() {
+        exception.expect(HttpException.class);
+        this.createUser();
+        HttpRequest request = new HttpRequestBuilder().method(HttpMethod.GET).path(UserResource.USERS).path("/{id}").expandPath("2").build();
+        new HttpClientService().httpRequest(request);
+    }
+    
+    @Test
+    public void testReadUserInvalidExceptionExeption() {
+        exception.expect(HttpException.class);
+        this.createUser();
+        HttpRequest request = new HttpRequestBuilder().method(HttpMethod.GET).path(UserResource.USERS).path("/{id}").expandPath("-1").build();
         new HttpClientService().httpRequest(request);
     }
     

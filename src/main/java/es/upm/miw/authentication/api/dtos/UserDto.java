@@ -1,5 +1,6 @@
 package es.upm.miw.authentication.api.dtos;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import es.upm.miw.authentication.api.entities.User;
@@ -58,7 +59,8 @@ public class UserDto {
 
     @Override
     public String toString() {
-        return "{\"id\":" + id + ",\"name\":\"" + name + ",\"birthday\":\"" + birthday + ",\"active\":\"" + active + "\"}";
+        String formattedDate = new SimpleDateFormat("yyyy-MM-dd").format(birthday.getTime());
+        return "{\"id\":" + id + ",\"name\":" + name + ",\"birthday\":" + formattedDate + ",\"active\":" + active + "}";
     }
 
 }
