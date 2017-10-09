@@ -33,8 +33,8 @@ public class UserResource {
         return optional.orElseThrow(() -> new UserIdNotFoundException(Integer.toString(userId)));
     }
     
-    public UserDto deleteUser(int userId) throws UserIdNotFoundException, UserInvalidException {
-        return null;
+    public void deleteUser(int userId) {
+        new UserController().deleteUser(userId);
     }
 
 }

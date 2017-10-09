@@ -37,5 +37,9 @@ public class UserController {
              return Optional.empty();
          }
      }
+    
+    public void deleteUser(int userId) {
+        DaoFactory.getFactory().getUserDao().deleteById(userId);
+    }
 
 }
