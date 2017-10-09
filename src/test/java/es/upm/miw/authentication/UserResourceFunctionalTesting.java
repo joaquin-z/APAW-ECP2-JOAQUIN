@@ -48,6 +48,16 @@ public class UserResourceFunctionalTesting {
     }
     
     @Test
+    public void testDeleteUser() {
+        exception.expect(HttpException.class);
+        this.createUser();
+        HttpRequest request = new HttpRequestBuilder().method(HttpMethod.DELETE).path(UserResource.USERS).path("/{id}").expandPath("1").build();
+        new HttpClientService().httpRequest(request);
+        request = new HttpRequestBuilder().method(HttpMethod.GET).path(UserResource.USERS).path("/{id}").expandPath("1").build();
+        assertEquals("{\"id\":1,\"name\":Joaquin,\"birthday\":1991-12-16,\"active\":false}", new HttpClientService().httpRequest(request).getBody());
+    }
+    
+    @Test
     public void testReadUser() {
         this.createUser();
         HttpRequest request = new HttpRequestBuilder().method(HttpMethod.GET).path(UserResource.USERS).path("/{id}").expandPath("1").build();

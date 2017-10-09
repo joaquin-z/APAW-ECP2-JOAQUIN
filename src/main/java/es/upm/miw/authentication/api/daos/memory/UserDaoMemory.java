@@ -34,5 +34,18 @@ public class UserDaoMemory extends GenericDaoMemory<User> implements UserDao {
         }
         return user;
     }
+    
+    @Override
+    public User deleteUserByUserId(int userId) {
+        List<User> users = this.findAll();
+        User user = null;
+        for (User u : users) {
+            if (u.getId() == userId) {
+                user = u;
+            }
+        }
+        users.remove(user.getId());
+        return user;
+    }
 
 }
