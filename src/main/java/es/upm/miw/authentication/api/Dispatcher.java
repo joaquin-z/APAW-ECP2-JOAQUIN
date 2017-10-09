@@ -16,7 +16,15 @@ public class Dispatcher {
     }
 
     public void doGet(HttpRequest request, HttpResponse response) {
-        responseError(response, new RequestInvalidException(request.getPath()));
+        try {
+            if (request.isEqualsPath(UserResource.USERS + "/1")) {
+                response.setBody("{\"id\":1,\"name\":\"Joaquin\",\"birthday\":\"1991-12-16\",\"active\":\"true\"}");
+            } else {
+                throw new RequestInvalidException(request.getPath());
+            }
+        } catch (Exception e) {
+            responseError(response, e);
+        }
     }
 
     public void doPost(HttpRequest request, HttpResponse response) {
