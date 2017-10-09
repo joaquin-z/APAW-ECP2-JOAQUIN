@@ -34,7 +34,9 @@ public class Dispatcher {
                 String date = request.getBody().split(":",-1)[1];
                 userResource.createUser(name, date);
                 response.setStatus(HttpStatus.CREATED);
-            } else {
+            } else if (request.isEqualsPath("authentication")) {
+                response.setStatus(HttpStatus.CREATED);
+            } else{
                 throw new RequestInvalidException(request.getPath());
             }
         } catch (Exception e) {
