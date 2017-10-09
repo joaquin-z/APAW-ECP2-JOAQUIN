@@ -1,7 +1,5 @@
 package es.upm.miw.authentication;
 
-import static org.junit.Assert.assertEquals;
-
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -45,6 +43,14 @@ public class AuthenticationResourceFunctionalTesting {
     public void testCreateAuthentication() {
         this.createUser();
         HttpRequest request = new HttpRequestBuilder().method(HttpMethod.POST).path("authentication").body("1:1").build();
+        new HttpClientService().httpRequest(request);
+    }    
+    
+    @Test
+    public void testCreateAuthenticationUserNotFound() {
+        exception.expect(HttpException.class);
+        this.createUser();
+        HttpRequest request = new HttpRequestBuilder().method(HttpMethod.POST).path("authentication").body("0:1").build();
         new HttpClientService().httpRequest(request);
     }    
 
