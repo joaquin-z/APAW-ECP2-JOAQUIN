@@ -6,12 +6,12 @@ public class UserInvalidException extends Exception {
     
     public static final String DESCRIPTION = "El ID debe ser un numero entero";
 
-    public UserInvalidException(String detail) {
-        super(DESCRIPTION + ". " + detail);
+    public UserInvalidException(int userId) {
+        super(DESCRIPTION + ". " + userId);
     }
 
     public UserInvalidException() {
-        this("");
+        this(0);
     }
 
 }

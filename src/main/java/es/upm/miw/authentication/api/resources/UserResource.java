@@ -7,6 +7,7 @@ import es.upm.miw.authentication.api.dtos.UserDto;
 import es.upm.miw.authentication.api.resources.exceptions.DateEmptyException;
 import es.upm.miw.authentication.api.resources.exceptions.NameEmptyException;
 import es.upm.miw.authentication.api.resources.exceptions.UserIdNotFoundException;
+import es.upm.miw.authentication.api.resources.exceptions.UserInvalidException;
 
 public class UserResource {
     
@@ -24,8 +25,12 @@ public class UserResource {
         new UserController().createUser(name, date);
     }
     
-    public UserDto readTheme(String userId) throws UserIdNotFoundException {
-        return null;
+    public UserDto readUser(int userId) throws UserIdNotFoundException, UserInvalidException {
+        if (userId < 0 || userId > Integer.MAX_VALUE) {
+            throw new UserInvalidException(userId);
+        }
+        Optional<UserDto> optional = new UserController().readUser(userId);
+        return optional.orElseThrow(() -> new UserIdNotFoundException(Integer.toString(userId)));
     }
 
 }

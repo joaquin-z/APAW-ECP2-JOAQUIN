@@ -3,6 +3,7 @@ package es.upm.miw.authentication.api.controllers;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Optional;
 
 import es.upm.miw.authentication.api.daos.DaoFactory;
 import es.upm.miw.authentication.api.dtos.UserDto;
@@ -25,8 +26,16 @@ public class UserController {
         DaoFactory.getFactory().getUserDao().create(new User(name, birthday));
     }
     
-    public void readUser(String userId) {
-        
+    private boolean existUserId(int userId) {
+        return DaoFactory.getFactory().getUserDao().read(userId) != null;
     }
+    
+    public Optional<UserDto> readUser(int userId) {
+        if (existUserId(userId)) {
+             return Optional.of(new UserDto(DaoFactory.getFactory().getUserDao().read(userId)));
+         } else {
+             return Optional.empty();
+         }
+     }
 
 }
