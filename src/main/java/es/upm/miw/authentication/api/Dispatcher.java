@@ -32,12 +32,12 @@ public class Dispatcher {
 
     public void doPost(HttpRequest request, HttpResponse response) {
         try {
-            if (request.isEqualsPath("users")) {
+            if (request.isEqualsPath(UserResource.USERS)) {
                 String name = request.getBody().split(":",-1)[0];
                 String date = request.getBody().split(":",-1)[1];
                 userResource.createUser(name, date);
                 response.setStatus(HttpStatus.CREATED);
-            } else if (request.isEqualsPath("authentication")) {
+            } else if (request.isEqualsPath(AuthenticationResource.AUTHENTICATION)) {
                 int userId = Integer.parseInt(request.getBody().split(":",-1)[0]);
                 Rol rol = Rol.values()[Integer.parseInt((request.getBody().split(":",-1)[1]))];
                 authenticationResource.createAuthentication(userId, rol);

@@ -11,6 +11,7 @@ import org.junit.rules.ExpectedException;
 import es.upm.miw.authentication.http.HttpException;
 import es.upm.miw.authentication.api.daos.DaoFactory;
 import es.upm.miw.authentication.api.daos.memory.DaoMemoryFactory;
+import es.upm.miw.authentication.api.resources.AuthenticationResource;
 import es.upm.miw.authentication.api.resources.UserResource;
 import es.upm.miw.authentication.http.HttpClientService;
 import es.upm.miw.authentication.http.HttpMethod;
@@ -42,7 +43,7 @@ public class AuthenticationResourceFunctionalTesting {
     @Test
     public void testCreateAuthentication() {
         this.createUser();
-        HttpRequest request = new HttpRequestBuilder().method(HttpMethod.POST).path("authentication").body("1:1").build();
+        HttpRequest request = new HttpRequestBuilder().method(HttpMethod.POST).path(AuthenticationResource.AUTHENTICATION).body("1:1").build();
         new HttpClientService().httpRequest(request);
     }    
     
@@ -50,7 +51,7 @@ public class AuthenticationResourceFunctionalTesting {
     public void testCreateAuthenticationUserNotFound() {
         exception.expect(HttpException.class);
         this.createUser();
-        HttpRequest request = new HttpRequestBuilder().method(HttpMethod.POST).path("authentication").body("0:1").build();
+        HttpRequest request = new HttpRequestBuilder().method(HttpMethod.POST).path(AuthenticationResource.AUTHENTICATION).body("0:1").build();
         new HttpClientService().httpRequest(request);
     }    
 

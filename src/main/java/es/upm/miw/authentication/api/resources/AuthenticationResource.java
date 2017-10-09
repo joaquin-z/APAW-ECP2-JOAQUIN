@@ -6,14 +6,11 @@ import es.upm.miw.authentication.api.resources.exceptions.UserIdNotFoundExceptio
 
 public class AuthenticationResource {
     
-    public static final String USERS = "authentication";
+    public static final String AUTHENTICATION = "authentication";
     
     public static final String ID = "/{id}";
     
     public void createAuthentication(int userId, Rol rol ) throws UserIdNotFoundException {
-        if (userId == 0) {
-            throw new UserIdNotFoundException(String.valueOf(userId));
-        }
         new AuthenticationController().createAuthentication(userId, rol);
     }
 
