@@ -48,6 +48,12 @@ public class UserResourceFunctionalTesting {
     }
     
     @Test
+    public void testDeleteUser() {
+        HttpRequest request = new HttpRequestBuilder().method(HttpMethod.DELETE).path(UserResource.USERS).path("/{id}").expandPath("1").build();
+        new HttpClientService().httpRequest(request);
+    }
+    
+    @Test
     public void testReadUser() {
         this.createUser();
         HttpRequest request = new HttpRequestBuilder().method(HttpMethod.GET).path(UserResource.USERS).path("/{id}").expandPath("1").build();

@@ -32,5 +32,9 @@ public class UserResource {
         Optional<UserDto> optional = new UserController().readUser(userId);
         return optional.orElseThrow(() -> new UserIdNotFoundException(Integer.toString(userId)));
     }
+    
+    public UserDto deleteUser(int userId) throws UserIdNotFoundException, UserInvalidException {
+        return null;
+    }
 
 }
