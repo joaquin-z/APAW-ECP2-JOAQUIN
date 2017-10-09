@@ -41,5 +41,13 @@ public class UserControllerIT {
         assertEquals("Joaquin", userController.userList().get(0).getName());
     }
     
+    @Test
+    public void testDeleteUser() {
+        Calendar date = Calendar.getInstance();
+        String fecha = new SimpleDateFormat("yyyy-MM-dd").format(date.getTime());
+        userController.createUser("Joaquin",fecha);
+        userController.deleteUser(1);
+    }
+    
     
 }

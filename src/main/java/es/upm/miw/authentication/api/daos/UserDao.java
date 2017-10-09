@@ -5,4 +5,6 @@ import es.upm.miw.authentication.api.entities.User;
 public interface UserDao extends GenericDao<User, Integer> {
 
     User findUserByUserId(int userId);
+
+    User deleteUserByUserId(int userId);
 }
