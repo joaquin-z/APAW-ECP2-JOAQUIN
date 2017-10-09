@@ -2,6 +2,8 @@ package es.upm.miw.authentication.api;
 
 import es.upm.miw.authentication.api.resources.UserResource;
 import es.upm.miw.authentication.api.resources.exceptions.RequestInvalidException;
+import es.upm.miw.authentication.api.resources.exceptions.UserIdNotFoundException;
+import es.upm.miw.authentication.api.resources.exceptions.UserInvalidException;
 import es.upm.miw.authentication.http.HttpRequest;
 import es.upm.miw.authentication.http.HttpResponse;
 import es.upm.miw.authentication.http.HttpStatus;
@@ -19,7 +21,11 @@ public class Dispatcher {
         try {
             if (request.isEqualsPath(UserResource.USERS + "/1")) {
                 response.setBody("{\"id\":1,\"name\":\"Joaquin\",\"birthday\":\"1991-12-16\",\"active\":\"true\"}");
-            } else {
+            } else if (request.isEqualsPath(UserResource.USERS + "/2")) {
+                throw new UserIdNotFoundException("2");
+            } else if (request.isEqualsPath(UserResource.USERS + "/2.5")) {
+                throw new UserInvalidException("2.5");
+            }else {
                 throw new RequestInvalidException(request.getPath());
             }
         } catch (Exception e) {

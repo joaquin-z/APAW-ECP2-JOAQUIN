@@ -24,5 +24,9 @@ public class UserController {
         birthday.set(1991,11,16);
         DaoFactory.getFactory().getUserDao().create(new User(name, birthday));
     }
+    
+    public void readUser(String userId) {
+        
+    }
 
 }

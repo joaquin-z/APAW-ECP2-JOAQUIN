@@ -1,12 +1,18 @@
 package es.upm.miw.authentication.api.resources;
 
+import java.util.Optional;
+
 import es.upm.miw.authentication.api.controllers.UserController;
+import es.upm.miw.authentication.api.dtos.UserDto;
 import es.upm.miw.authentication.api.resources.exceptions.DateEmptyException;
 import es.upm.miw.authentication.api.resources.exceptions.NameEmptyException;
+import es.upm.miw.authentication.api.resources.exceptions.UserIdNotFoundException;
 
 public class UserResource {
     
     public static final String USERS = "users";
+    
+    public static final String ID = "/{id}";
     
     public void createUser(String name, String date ) throws DateEmptyException, NameEmptyException {
         if (name.isEmpty()) {
@@ -16,6 +22,10 @@ public class UserResource {
             throw new DateEmptyException(date);
         }
         new UserController().createUser(name, date);
+    }
+    
+    public UserDto readTheme(String userId) throws UserIdNotFoundException {
+        return null;
     }
 
 }

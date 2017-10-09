@@ -52,7 +52,20 @@ public class UserResourceFunctionalTesting {
         this.createUser();
         HttpRequest request = new HttpRequestBuilder().method(HttpMethod.GET).path(UserResource.USERS).path("/{id}").expandPath("1").build();
         assertEquals("{\"id\":1,\"name\":\"Joaquin\",\"birthday\":\"1991-12-16\",\"active\":\"true\"}", new HttpClientService().httpRequest(request).getBody());
-
+    }
+    
+    @Test
+    public void testReadUserIdNotFoundExeption() {
+        this.createUser();
+        HttpRequest request = new HttpRequestBuilder().method(HttpMethod.GET).path(UserResource.USERS).path("/{id}").expandPath("2").build();
+        new HttpClientService().httpRequest(request);
+    }
+    
+    @Test
+    public void testReadUserInvalidExceptionExeption() {
+        this.createUser();
+        HttpRequest request = new HttpRequestBuilder().method(HttpMethod.GET).path(UserResource.USERS).path("/{id}").expandPath("2.5").build();
+        new HttpClientService().httpRequest(request);
     }
     
     @Test
